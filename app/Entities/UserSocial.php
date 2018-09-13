@@ -3,13 +3,12 @@
 namespace App\Entities;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class UserSocial extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
     use Notifiable;
 
     public $timestamps = true;
@@ -22,16 +21,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'cpf',
-        'name',
-        'phone',
-        'barth',
-        'sex',
-        'notes',
-        'email',
-        'password',
-        'status',
-        'permission'
+        'user_id',
+        'social_network',
+        'social_id',
+        'social_email',
+        'social_avatar',
+        'user_id',
+        'social_email'
     ];
 
     /**
@@ -42,5 +38,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
 }
