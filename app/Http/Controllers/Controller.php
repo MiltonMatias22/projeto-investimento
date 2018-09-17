@@ -17,9 +17,13 @@ class Controller extends BaseController
     		'title' => 'Homepage | Sistema de Gestão para Grupos de Investimentos.'
     	]);
     }
-
+    
+    /*
+    | Function to accesse login view
+    |--------------------------------------------------------------------------
+    */
     public function fazerLogin(){
-    	echo "Tela de login";;
+    	return view('user.login');
     }
 
     public function cadastro(){

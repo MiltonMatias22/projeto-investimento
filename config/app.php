@@ -159,14 +159,18 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
 
 
         /*
          * -------------- MINHAS EPENDENCIAS  --------------
          */
-        
+
         // https://github.com/andersao/l5-repository
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
+
+        //https://laravelcollective.com/docs/5.2/html
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -216,6 +220,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        //MINHAS DEPENDENCIAS
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

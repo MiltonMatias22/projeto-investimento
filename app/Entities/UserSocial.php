@@ -13,7 +13,7 @@ class UserSocial extends Model
 
     public $timestamps = true;
 
-    protected $table   = 'users';
+    protected $table   = 'user_socials';
 
     /**
      * The attributes that are mass assignable.
@@ -35,7 +35,5 @@ class UserSocial extends Model
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = [];
 }

@@ -13,12 +13,17 @@
 
 Route::get('/', ['uses' => 'Controller@homepage']);
 
-Route::get('/fazerLogin', ['uses' => 'Controller@fazerLogin']);
 
-Route::get('/cadastro', ['uses' => 'Controller@cadastro']);
+Route::get('cadastro', ['uses' => 'Controller@cadastro']);
 
 /*
-Route::get('/', function () {
-    return view('welcome');
-});
+| Routes to user auth
+|--------------------------------------------------------------------------
 */
+Route::get('login', ['uses' => 'Controller@fazerLogin']);
+
+//designate route: as user.login
+Route::post('login', ['as' => 'user.login', 'uses' => 'DashboardController@auth']);
+
+//designate route: as user.dashboard
+Route::post('dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardController@index']);
