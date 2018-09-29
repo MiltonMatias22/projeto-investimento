@@ -43,4 +43,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * .
+     *
+     * @param $value
+     */
+    public function setPasswordAttribute($value){
+        $this->attributes['password'] = env('PASSWORD_HASH') ? bcrypt($value) : $value; 
+    }
+
 }

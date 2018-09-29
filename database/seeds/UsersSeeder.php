@@ -14,14 +14,14 @@ class UsersSeeder extends Seeder
     {
         //people data
         User::create([
-            'cpf'        => '123456789', 
-            'name'       => 'Milton Matias', 
-            'phone'      => '123456789', 
-            'barth'      => '1988-07-09',
-            'sex'        => 'M',
+            'cpf'        => '021456789', 
+            'name'       => 'Tamara Matias', 
+            'phone'      => '023456789', 
+            'barth'      => '1991-10-29',
+            'sex'        => 'F',
             'notes'      => 'Write something here',
-            'email'      => 'milton@gmail.com',
-            'password'   => bcrypt('1234'),
+            'email'      => 'tamara@gmail.com',
+            'password'   => env('PASSWORD_HASH') ? bcrypt('123') : '123',
         ]);
 
     }
