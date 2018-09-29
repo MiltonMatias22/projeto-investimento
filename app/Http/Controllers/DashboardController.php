@@ -49,7 +49,7 @@ class DashboardController extends Controller
   {
     //data authentication
     $data = [
-      'emal' =>$request -> get('username'),
+      'email' =>$request -> get('username'),
       'password' =>$request ->  get('password')
     ];
 
