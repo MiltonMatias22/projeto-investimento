@@ -4,10 +4,9 @@
     list-style: none;
     outline: none;
     border: none;
-
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
-           -box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 /**
@@ -87,7 +86,142 @@ section#conteudo-view form input[type="submit"]{
     font: 1em 'Fredoka One', cursive;
 }
 
-.login{}
-
 /* end stylesheet to login page
  * ---------------------------------------- */
+
+ /**
+ * ----------------------------------------
+ * stylesheet to menu lateral
+ * ----------------------------------------
+ */
+
+ nav#principal{
+    position: fixed;
+    float: left;
+    width: 15%;
+    height: 100%;
+    background-color:#E5E7E9;
+    box-shadow: 0 0 8px rgb(0,0,0, .4);
+    z-index: 5;
+ }
+
+ nav#principal ul li a, i,p{
+    float: left;
+ }
+
+ nav#principal ul li a{
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+    color:rgb(87, 87, 87);
+    text-decoration: none;
+    display: block;
+    font: 1em 'Open Sans', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+ }
+
+ nav#principal ul li a:hover{
+    border-bottom:solid 0px;
+    box-shadow: 0 3px 6px rgb(0,0,0, .3);   
+ }
+
+ nav#principal ul li a:active{
+    color:#D0D3D4;
+ }
+
+ nav#principal ul li a i{
+    text-align: center;
+    padding-right: 5px;
+    font-size: 1.25em;
+        
+}
+
+ /**
+ * ----------------------------------------
+ * Contente View
+ * ----------------------------------------
+ */
+
+ #content-view{
+    position: fixed;
+    float: left;
+    width: 100%;
+    height: 100%;
+    padding: 20px 10px 20px 240px;
+    z-index: 1;
+ }
+
+  /**
+ * ----------------------------------------
+ * Form User
+ * ----------------------------------------
+ */
+
+ form.form-pattern{
+    float: left;
+    width: 100%;
+ }
+
+ form.form-pattern label{
+    float: left;
+    width: 49%;
+    height: 60px;
+    padding: 7px 15px;
+    border-bottom: 1px solid #C7C7C7;
+    background-color: #FFFFFF;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+}
+
+form.form-pattern label:nth-last-of-type(odd){
+    margin-left: 2%;
+}
+
+form.form-pattern label span{
+    float: left;
+    width: 100%;
+    font: .75em 'Open Sans', sans-serif;
+    color: #C7C7C7;
+    padding-bottom: 5px;
+}
+
+form.form-pattern label input{
+    float: left;
+    width: 100%;
+    color: #C5C5C5;
+    background: transparent;
+    font: 400 1em 'Open Sans', sans-serif;
+    background: transparent;
+}
+
+form.form-pattern label.submit{
+    background-color: #0AD181;
+    border-bottom-color: #0AAA67;
+}
+
+form.form-pattern label.submit input{
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 50px;
+    color: #F9F9F9;
+    cursor: pointer;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+}
+
+form.form-pattern label.submit:hover{
+    background-color: rgb(4, 190, 116);  
+ }
+
+form.form-pattern label.submit input:active{
+    color:#D0D3D4;
+ }

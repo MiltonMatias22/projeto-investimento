@@ -39,7 +39,7 @@ class DashboardController extends Controller
  */
   public function index()
   {
-    return 'User Dashboard Page.';
+    return view('user.dashboard');
   }
 
 /**

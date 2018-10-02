@@ -27,3 +27,5 @@ Route::post('login', ['as' => 'user.login', 'uses' => 'DashboardController@auth'
 
 //designate route: as user.dashboard
 Route::get('dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardController@index']);
+
+Route::get('user', ['as' => 'user.index', 'uses' => 'UsersController@index']);
