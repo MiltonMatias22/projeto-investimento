@@ -164,6 +164,27 @@ section#conteudo-view form input[type="submit"]{
     width: 100%;
  }
 
+ form.form-pattern h3{
+    float: left;
+    width: 100%;
+    font: 400 1em 'Open Sans', sans-serif;
+    height: 40px;
+    padding: 5px;
+    background-color: rgb(241, 241, 241);
+    color: rgb(133, 133, 133);
+    margin-bottom: 20px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+}
+
  form.form-pattern label{
     float: left;
     width: 49%;
@@ -195,7 +216,6 @@ form.form-pattern label input{
     float: left;
     width: 100%;
     color: #C5C5C5;
-    background: transparent;
     font: 400 1em 'Open Sans', sans-serif;
     background: transparent;
 }

@@ -1,7 +1,7 @@
         <nav id="principal">
             <ul>
                 <li>
-                    <a href="#">
+                <a href="{{ route('user.index')}}">
                         <i class="fas fa-user"></i>
                         <p>Usuários</p>
                     </a>
