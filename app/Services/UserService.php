@@ -38,12 +38,7 @@ class UserService
         }catch(Exception $e)
         {
             //get Exception
-            switch (get_class($e)) {
-                case QueryException::class      : return ['success' => false, 'messages' => $e->getMessage()];
-                case ValidatorException::class  : return ['success' => false, 'messages' => $e->getMessageBag()];
-                case Exception::class           : return ['success' => false, 'messages' => $e->getMessage()];
-                default                         : return ['success' => false, 'messages' => $e->getMessage()]; 
-            } 
+            userExceptions($e);
         }
 
     }
@@ -53,9 +48,25 @@ class UserService
 
     }
 
-    public function delete()
-    {
+    public function destroy($id)
+    {   try{
+            $this->repository->delete($id);
+            
+            return [
+                'success' => true,
+                'messages' => "Registro removido.",
+                'data'    => null
+            ];
 
+        }catch(Exception $e)
+        {
+            switch (get_class($e)) {
+                case QueryException::class      : return ['success' => false, 'messages' => $e->getMessage()];
+                case ValidatorException::class  : return ['success' => false, 'messages' => $e->getMessageBag()];
+                case Exception::class           : return ['success' => false, 'messages' => $e->getMessage()];
+                default                         : return ['success' => false, 'messages' => $e->getMessage()]; 
+            }
+        }
     }
 
 }
