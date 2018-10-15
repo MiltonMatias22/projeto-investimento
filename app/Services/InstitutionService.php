@@ -6,15 +6,15 @@ use Exception;
 use Illuminate\Database\QueryException;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Prettus\Validator\Contracts\ValidatorInterface;
-use App\Repositories\UserRepository;
-Use App\Validators\UserValidator;
+use App\Repositories\InstitutionRepository;
+Use App\Validators\InstitutionValidator;
 
-class UserService
+class InstitutionService
 {
     protected $repository;
     protected $validator;
     
-    public function __construct(UserRepository $repository, UserValidator $validator)
+    public function __construct(InstitutionRepository $repository, InstitutionValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -27,12 +27,12 @@ class UserService
             // data validated
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
             // save user data
-            $usuario = $this->repository->create($data);
+            $institution = $this->repository->create($data);
             
             return [
                 'success' => true,
-                'messages' => "Usuário cadastrado.",
-                'data'    => $usuario
+                'messages' => "Instituição cadastrada.",
+                'data'    => $institution
             ];
 
         }catch(Exception $e)

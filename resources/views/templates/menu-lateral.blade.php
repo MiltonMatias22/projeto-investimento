@@ -7,13 +7,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('institution.index')}}">
                         <i class="fas fa-building"></i>
                         <p>Instituições</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                <a href="{{ route('group.index') }}">
                         <i class="fa fa-users"></i>
                         <p>Grupos</p>
                     </a>
