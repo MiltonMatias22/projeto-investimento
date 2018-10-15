@@ -27,7 +27,7 @@ class Group extends Model implements Transformable
     ];
 
     //get relationship with user
-    public function owner(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
 

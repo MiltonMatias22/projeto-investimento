@@ -18,34 +18,9 @@
         @include('templates.form.submit', ['input' => 'Cadastrar'])
 
     {!! Form::close() !!}
-    <div class="table-around">
-        <table class="user-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Grupo</th>
-                    <th>User</th>
-                    <th>Instituição</th>
-                    <th>Menu</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($groups as $item)
-                <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->user_id }}</td>
-                    <td>{{ $item->institution_id }}</td>
-                    <td>
-                        {!! Form::open(['route' => ['user.destroy',$item->id], 'method' => 'DELETE']) !!}
-                            {!! Form::submit('remover');!!}
-                        {!! Form::close()!!}
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+    
+    @include('group.list', ['group_list' => $groups])
+
 @endsection
 
 @section('script-content')
