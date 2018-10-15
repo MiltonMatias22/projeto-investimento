@@ -52,4 +52,33 @@ class User extends Authenticatable
         $this->attributes['password'] = env('PASSWORD_HASH') ? bcrypt($value) : $value; 
     }
 
+    // use pattern mutator to format fields
+    public function getFormattedCpfAttribute(){
+        $cpf = $this->attributes['cpf'];
+        return substr($cpf, 0, 3).'.'.
+            substr($cpf, 3, 3).'.'.
+            substr($cpf, 7, 3).'-'.
+            substr($cpf, -2);
+    }
+
+    public function getFormattedPhoneAttribute(){        
+        $phone = $this->attributes['phone'];
+        //for 11 digits
+        if(strlen($phone) == 11)
+            return "(".substr($phone, 0, 2).") ".substr($phone, 2, 5)."-".substr($phone, -4);
+        //for 10 digits
+        if(strlen($phone) == 10)
+            return "(".substr($phone, 0, 2).") ".substr($phone, 2, 4)."-".substr($phone, -4);
+
+    }
+
+    public function getFormattedBarthAttribute(){
+        $barth = $this->attributes['barth'];        
+        $barth = explode('-', $barth);
+        if(count($barth) != 3){
+            return "erro";
+        }
+        return "$barth[2]/$barth[1]/$barth[0]";
+    }
+
 }
