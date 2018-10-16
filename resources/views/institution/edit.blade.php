@@ -5,7 +5,7 @@
 @endsection
 
 @section('content-view')
-<h2>{{ $institution->name }}</h2>
+<h2>Edit</h2>
 {!! Form::model($institution, ['route' => ['institution.update', $institution->id], 'method' => 'put', 'class' => 'form-pattern']) !!}
 
 @if(Session::has('success'))
