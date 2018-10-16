@@ -99,51 +99,32 @@ class InstitutionsController extends Controller
     public function edit($id)
     {
         $institution = $this->repository->find($id);
-
-        return view('institution.edit', compact('institution'));
+        
+        return view('institution.edit', [
+            'institution' => $institution
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  InstitutionUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(InstitutionUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        try {
+        
+        $request = $this->service->update($request->all(), $id);
+        
+        //messages session
+        \Session::flash('success',[
+            'success'  => $request['success'],
+            'messages' => $request['messages']
+        ]);
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $institution = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'Institution updated.',
-                'data'    => $institution->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        return redirect()->route('institution.index');
     }
 
 

@@ -5,8 +5,8 @@
 @endsection
 
 @section('content-view')
-    
-    {!! Form::open(['route' => 'user.store', 'method' => 'post', 'class' => 'form-pattern']) !!}
+    <h2>Edit</h2>
+    {!! Form::model($user, ['route' => ['user.update', $user->id], 'method' => 'put', 'class' => 'form-pattern']) !!}
 
          @if(Session::has('success'))
             <h3>{!! Session::get('success')['messages'] !!}</h3>
@@ -16,13 +16,12 @@
         @include('templates.form.input', ['label' => 'Nome', 'input' => 'name',  'attributes' => ['placeholder' =>'Nome']])
         @include('templates.form.input', ['label' => 'Phone', 'input' => 'phone', 'attributes' => ['placeholder' =>'Phone']])
         @include('templates.form.input', ['label' => 'Email', 'input' => 'email', 'attributes' => ['placeholder' =>'Email']])
-        
+        <!-- password field update problem -->
         @include('templates.form.password', ['label' => 'Password', 'input' => 'password', 'attributes' => ['placeholder' => 'password']])
-        @include('templates.form.submit', ['input' => 'Cadastrar'])
+        @include('templates.form.submit', ['input' => 'atualizar'])
 
     {!! Form::close() !!}
 
-    @include('user.list', ['user_list' => $user_list])
 @endsection
 
 @section('script-content')
