@@ -27,12 +27,41 @@ class GroupService
             // data validated
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
             // save group data
-            $goup = $this->repository->create($data);
+            $group = $this->repository->create($data);
             
             return [
                 'success' => true,
                 'messages' => "Grupo cadastrada.",
-                'data'    => $goup
+                'data'    => $group
+            ];
+
+        }catch(Exception $e)
+        {
+            //get Exception
+            switch (get_class($e)) {
+                case QueryException::class      : return ['success' => false, 'messages' => $e->getMessage()];
+                case ValidatorException::class  : return ['success' => false, 'messages' => $e->getMessageBag()];
+                case Exception::class           : return ['success' => false, 'messages' => $e->getMessage()];
+                default                         : return ['success' => false, 'messages' => $e->getMessage()]; 
+            }
+        }
+
+    }
+
+    public function userStore($group_id, $data)
+    {
+        try
+        {    
+            // find group data
+            $group = $this->repository->find($group_id);
+            $user_id = $data['user_id'];
+
+            $group->users()->attach($user_id);
+            
+            return [
+                'success' => true,
+                'messages' => "Usuario adicionado com sucesso!",
+                'data'    => $group
             ];
 
         }catch(Exception $e)

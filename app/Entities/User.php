@@ -52,6 +52,11 @@ class User extends Authenticatable
         $this->attributes['password'] = env('PASSWORD_HASH') ? bcrypt($value) : $value; 
     }
 
+    //relationship N:N
+    public function groups(){
+        return $this->belongsToMany(Group::class, 'user_groups');
+    }
+
     // use pattern mutator to format fields
     public function getFormattedCpfAttribute(){
         $cpf = $this->attributes['cpf'];

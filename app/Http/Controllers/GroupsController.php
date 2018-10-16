@@ -92,6 +92,20 @@ class GroupsController extends Controller
         return redirect()->route('group.index');
     }
 
+    public function userStore(Request $request, $group_id)
+    {
+        //dd($request);
+        $request = $this->service->userStore($group_id, $request->all());
+        
+        //messages session
+        \Session::flash('success',[
+            'success'  => $request['success'],
+            'messages' => $request['messages']
+        ]);
+
+        return redirect()->route('group.show', [$group_id]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -102,15 +116,11 @@ class GroupsController extends Controller
     public function show($id)
     {
         $group = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $group,
-            ]);
-        }
-
-        return view('groups.show', compact('group'));
+        $user_list = $this->userRepository->selectBoxList();
+        return view('group.show',[
+            'group' => $group,
+            'user_list' => $user_list
+        ]);
     }
 
     /**
