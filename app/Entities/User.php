@@ -57,6 +57,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Group::class, 'user_groups', 'group_id', 'user_id');
     }
 
+    public function moviments(){
+        return $this->hasMany(Moviment::class);
+    }
+
     // use pattern mutator to format fields
     public function getFormattedCpfAttribute(){
         $cpf = $this->attributes['cpf'];

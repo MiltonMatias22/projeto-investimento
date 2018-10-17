@@ -30,5 +30,11 @@
                         <p>Aplicações</p>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('moviment.all') }}">
+                        <i class="fa fa-file-invoice-dollar"></i>
+                        <p>Extrato</p>
+                    </a>
+                </li>
             </ul>
         </nav>
