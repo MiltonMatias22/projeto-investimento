@@ -34,4 +34,17 @@ class Product extends Model implements Transformable
         return $this->belongsTo(Institution::class);
     }
 
+    public function valueFromUser(User $user)
+    {
+        // calc all applications in a produc
+        $inflows = $this->moviments()->product($this)->applications()->sum('value');
+        $outflows = $this->moviments()->product($this)->outflows()->sum('value');
+        
+        return $inflows - $outflows;
+    }
+
+    public function moviments()
+    {
+        return $this->hasMany(Moviment::class);
+    }
 }

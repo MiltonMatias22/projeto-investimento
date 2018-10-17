@@ -79,4 +79,10 @@ class MovimentsController extends Controller
         return redirect()->route('moviment.application');
     }
 
+    public function index(){
+        return view('moviment.index', [
+            'product_list' => Product::all()
+        ]);
+    }
+
 }

@@ -20,9 +20,15 @@
                 </li>
                 <li>
                     <a href="{{ route('moviment.application') }}">
-                            <i class="fa fa-money-check-alt"></i>
-                            <p>Investir</p>
-                        </a>
-                    </li>
+                        <i class="fa fa-money-check-alt"></i>
+                        <p>Investir</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('moviment.index') }}">
+                        <i class="fa fa-hand-holding-usd"></i>
+                        <p>Aplicações</p>
+                    </a>
+                </li>
             </ul>
         </nav>

@@ -16,6 +16,10 @@ Route::get('/', ['uses' => 'Controller@homepage']);
 
 Route::get('cadastro', ['uses' => 'Controller@cadastro']);
 
+Route::get('moviment', ['as' => 'moviment.application', 'uses' => 'MovimentsController@application']);
+Route::post('moviment', ['as' => 'moviment.application.store', 'uses' => 'MovimentsController@storeApplication']);
+Route::get('user/moviment', ['as' => 'moviment.index', 'uses' => 'MovimentsController@index']);
+
 /*
 | Routes to user auth
 |--------------------------------------------------------------------------
@@ -47,6 +51,3 @@ Route::resource('group', 'GroupsController');
 Route::post('group/{group_id}/user', ['as' => 'group.user.store', 'uses' => 'GroupsController@userStore']);
 
 Route::resource('institution.product', 'ProductsController');
-
-Route::get('moviment', ['as' => 'moviment.application', 'uses' => 'MovimentsController@application']);
-Route::post('moviment', ['as' => 'moviment.application.store', 'uses' => 'MovimentsController@storeApplication']);
