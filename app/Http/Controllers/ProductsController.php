@@ -11,6 +11,7 @@ use App\Http\Requests\ProductCreateRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Repositories\ProductRepository;
 use App\Validators\ProductValidator;
+use App\Entities\Institution;
 
 /**
  * Class ProductsController.
@@ -44,59 +45,43 @@ class ProductsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($institution_id)
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $products = $this->repository->all();
+        $institution = Institution::find($institution_id);
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $products,
-            ]);
-        }
-
-        return view('products.index', compact('products'));
+        return view('institution.product.index', [
+            'institution' => $institution
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ProductCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(ProductCreateRequest $request)
+    public function store(Request $request,  $institution_id)
     {
+        
         try {
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+            $data = $request->all();
+            $data['institution_id'] = $institution_id;
+            
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
+            
+            $product = $this->repository->create($data);
+            
+            //messages session
+            \Session::flash('success',[
+                'success'  => true,
+                'messages' => 'Produto cadastrado'
+            ]);
 
-            $product = $this->repository->create($request->all());
+            return redirect()->route('institution.product.index', $institution_id);
 
-            $response = [
-                'message' => 'Product created.',
-                'data'    => $product->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
     }
@@ -133,7 +118,7 @@ class ProductsController extends Controller
     {
         $product = $this->repository->find($id);
 
-        return view('products.edit', compact('product'));
+        return view('institution.product.edit', compact('product'));
     }
 
     /**
@@ -187,18 +172,16 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($institution_id, $product_id)
     {
-        $deleted = $this->repository->delete($id);
+        $deleted = $this->repository->delete($product_id);
 
-        if (request()->wantsJson()) {
+        //messages session
+        \Session::flash('success',[
+            'success'  => true,
+            'messages' => 'Produto removido'
+        ]);
 
-            return response()->json([
-                'message' => 'Product deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Product deleted.');
+        return redirect()->back();
     }
 }
