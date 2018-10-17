@@ -26,6 +26,14 @@ class Group extends Model implements Transformable
         'institution_id'
     ];
 
+    public function getTotalValueAttribute(){
+        $total = 0;
+        foreach($this->moviments as $moviment)
+            $total += $moviment->value;
+
+        return $total;
+    }
+
     //get relationship with user
     public function user(){
         return $this->belongsTo(User::class);
@@ -39,6 +47,10 @@ class Group extends Model implements Transformable
     //relationship N:N
     public function users(){
         return $this->belongsToMany(User::class, 'user_groups');
+    }
+
+    public function moviments(){
+        return $this->hasMany(Moviment::class);
     }
 
 }

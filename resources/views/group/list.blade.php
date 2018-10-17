@@ -6,6 +6,7 @@
                 <th>Grupo</th>
                 <th>User</th>
                 <th>Instituição</th>
+                <th>Investimento</th>
                 <th>Menu</th>
             </tr>
         </thead>
@@ -16,6 +17,7 @@
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->user->name }}</td>
                 <td>{{ $item->institution->name }}</td>
+                <td>R${{ number_format($item->totalValue, 2, ',', '.' )}}</td>
                 <td>
                     {!! Form::open(['route' => ['group.destroy',$item->id], 'method' => 'DELETE']) !!}
                         {!! Form::submit('remover');!!}

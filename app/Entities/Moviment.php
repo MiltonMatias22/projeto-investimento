@@ -49,7 +49,7 @@ class Moviment extends Model implements Transformable
     
     public function product()
     {
-        return $this->belongsTo(Produto::class);
+        return $this->belongsTo(Product::class);
     }
 
 }

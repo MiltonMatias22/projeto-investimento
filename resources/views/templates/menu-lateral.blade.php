@@ -18,5 +18,11 @@
                         <p>Grupos</p>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('moviment.application') }}">
+                            <i class="fa fa-money-check-alt"></i>
+                            <p>Investir</p>
+                        </a>
+                    </li>
             </ul>
         </nav>

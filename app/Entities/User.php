@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     //relationship N:N
     public function groups(){
-        return $this->belongsToMany(Group::class, 'user_groups');
+        return $this->belongsToMany(Group::class, 'user_groups', 'group_id', 'user_id');
     }
 
     // use pattern mutator to format fields
