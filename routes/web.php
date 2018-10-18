@@ -21,6 +21,9 @@ Route::post('moviment', ['as' => 'moviment.application.store', 'uses' => 'Movime
 Route::get('user/moviment', ['as' => 'moviment.index', 'uses' => 'MovimentsController@index']);
 Route::get('moviment/all', ['as' => 'moviment.all', 'uses' => 'MovimentsController@all']);
 
+Route::get('getback', ['as' => 'moviment.getback', 'uses' => 'MovimentsController@getback']);
+Route::post('getback', ['as' => 'moviment.getback.store', 'uses' => 'MovimentsController@storeGetback']);
+
 /*
 | Routes to user auth
 |--------------------------------------------------------------------------

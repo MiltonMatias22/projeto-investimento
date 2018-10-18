@@ -92,5 +92,35 @@ class MovimentsController extends Controller
             'moviment_list' => $moviment_list
         ]);
     }
+    public function getback(){
+        // get user  auth
+        $user = Auth::user();
+        // get groups from user
+        $group_list = $user->groups->pluck('name', 'id');
+        
+        $product_list = Product::all()->pluck('name', 'id');
+        
+        return view('moviment.getback',[
+            'group_list' => $group_list,
+            'product_list' => $product_list
+        ]);
+    }
+    public function storeGetback(Request $request){
+        $moviment = Moviment::create([
+            'user_id' => Auth::user()->id,
+            'group_id' => $request->get('group_id'),
+            'product_id' => $request->get('product_id'),
+            'value' => $request->get('value'),
+            'type' => 2,
+        ]);
+
+        //messages session
+        \Session::flash('success',[
+            'success'  => true,
+            'messages' => "Resgate de ".$moviment->value." no produto ".$moviment->product->name." realizado com sucesso"
+        ]);
+
+        return redirect()->route('moviment.getback');
+    }
 
 }

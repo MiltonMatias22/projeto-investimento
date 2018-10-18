@@ -5,7 +5,7 @@
 @endsection
 
 @section('content-view')
-{!! Form::open([ 'route' => 'moviment.application.store', 'method' => 'post', 'class' => 'form-pattern']) !!}
+{!! Form::open([ 'route' => 'moviment.getback.store', 'method' => 'post', 'class' => 'form-pattern']) !!}
 
 @if(Session::has('success'))
    <h3>{!! Session::get('success')['messages'] !!}</h3>

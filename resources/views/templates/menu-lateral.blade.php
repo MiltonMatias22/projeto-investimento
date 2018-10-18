@@ -36,5 +36,11 @@
                         <p>Extrato</p>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('moviment.getback') }}">
+                        <i class="fa fa-money-bill-alt"></i>
+                        <p>Resgatar</p>
+                    </a>
+                </li>
             </ul>
         </nav>

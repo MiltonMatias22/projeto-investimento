@@ -27,11 +27,11 @@ class Group extends Model implements Transformable
     ];
 
     public function getTotalValueAttribute(){
-        $total = 0;
-        foreach($this->moviments as $moviment)
-            $total += $moviment->value;
+   
+        $in = $this->moviments()->applications()->sum('value');
+        $out = $this->moviments()->outflows()->sum('value');
 
-        return $total;
+        return $in - $out;
     }
 
     //get relationship with user
